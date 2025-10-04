@@ -6,6 +6,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hirenet.AppHost", "Hirenet.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hirenet.ServiceDefaults", "Hirenet.ServiceDefaults\Hirenet.ServiceDefaults.csproj", "{E6BD7B03-AAE3-5BD6-BC8A-34924CC05564}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AuthenticationService", "AuthenticationService", "{20E5871F-00B3-45D8-82B1-5207693B8EDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hirenet.Authenticate.API", "Hirenet.Authenticate.API\Hirenet.Authenticate.API.csproj", "{64E4C756-C5F0-1430-C81E-D86886E20770}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hirenet.Authenticate.Domain", "Hirenet.Authenticate.Domain\Hirenet.Authenticate.Domain.csproj", "{384499E9-8F35-4C05-B5C7-0B6ABC8FA76D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hirenet.Authenticate.Application", "Hirenet.Authenticate.Application\Hirenet.Authenticate.Application.csproj", "{7F8F09B8-16BA-4AAE-8F5D-5A760C3B4989}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hirenet.Authenticate.Infrastructure", "Hirenet.Authenticate.Infrastructure\Hirenet.Authenticate.Infrastructure.csproj", "{4D46A59B-BCF8-45C2-84D6-DDCD6EB64AD0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,9 +32,32 @@ Global
 		{E6BD7B03-AAE3-5BD6-BC8A-34924CC05564}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6BD7B03-AAE3-5BD6-BC8A-34924CC05564}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E6BD7B03-AAE3-5BD6-BC8A-34924CC05564}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64E4C756-C5F0-1430-C81E-D86886E20770}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64E4C756-C5F0-1430-C81E-D86886E20770}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64E4C756-C5F0-1430-C81E-D86886E20770}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64E4C756-C5F0-1430-C81E-D86886E20770}.Release|Any CPU.Build.0 = Release|Any CPU
+		{384499E9-8F35-4C05-B5C7-0B6ABC8FA76D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{384499E9-8F35-4C05-B5C7-0B6ABC8FA76D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{384499E9-8F35-4C05-B5C7-0B6ABC8FA76D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{384499E9-8F35-4C05-B5C7-0B6ABC8FA76D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F8F09B8-16BA-4AAE-8F5D-5A760C3B4989}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F8F09B8-16BA-4AAE-8F5D-5A760C3B4989}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F8F09B8-16BA-4AAE-8F5D-5A760C3B4989}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F8F09B8-16BA-4AAE-8F5D-5A760C3B4989}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D46A59B-BCF8-45C2-84D6-DDCD6EB64AD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D46A59B-BCF8-45C2-84D6-DDCD6EB64AD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D46A59B-BCF8-45C2-84D6-DDCD6EB64AD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D46A59B-BCF8-45C2-84D6-DDCD6EB64AD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{20E5871F-00B3-45D8-82B1-5207693B8EDF} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{64E4C756-C5F0-1430-C81E-D86886E20770} = {20E5871F-00B3-45D8-82B1-5207693B8EDF}
+		{384499E9-8F35-4C05-B5C7-0B6ABC8FA76D} = {20E5871F-00B3-45D8-82B1-5207693B8EDF}
+		{7F8F09B8-16BA-4AAE-8F5D-5A760C3B4989} = {20E5871F-00B3-45D8-82B1-5207693B8EDF}
+		{4D46A59B-BCF8-45C2-84D6-DDCD6EB64AD0} = {20E5871F-00B3-45D8-82B1-5207693B8EDF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E24F3DEE-BF24-4E38-8D4E-18F250A2E250}

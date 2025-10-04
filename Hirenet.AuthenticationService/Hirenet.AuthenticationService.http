@@ -1,0 +1,6 @@
+@Hirenet.AuthenticationService_HostAddress = http://localhost:5135
+
+GET {{Hirenet.AuthenticationService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
