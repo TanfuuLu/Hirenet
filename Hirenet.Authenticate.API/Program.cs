@@ -1,5 +1,10 @@
-var builder = WebApplication.CreateBuilder(args);
+using Hirenet.Authenticate.Application;
+using Hirenet.Authenticate.Infrastructure;
+using Scalar.AspNetCore;
 
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddApplication();
 builder.AddServiceDefaults();
 
 // Add services to the container.
@@ -9,12 +14,13 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
-
+app.Services.ApplyMigrations();
 app.MapDefaultEndpoints();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+	app.MapScalarApiReference();
     app.MapOpenApi();
 }
 
