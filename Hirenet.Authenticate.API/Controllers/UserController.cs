@@ -18,4 +18,10 @@ public class UserController : ControllerBase {
 		var result = await mediator.Send(command);
 		return Ok(result);
 	}
+	[HttpPost("login")]
+	public async Task<IActionResult> Login([FromBody] LoginUserDTO item) {
+		var command = new LoginCommand(item);
+		var result = await mediator.Send(command);
+		return Ok(result);
+	}
 }
