@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Hirenet.Authenticate.API\Hirenet.Authenticate.API.csproj" />
+    <ProjectReference Include="..\Hirenet.Job.API\Hirenet.Job.API.csproj" />
   </ItemGroup>
 
 </Project>

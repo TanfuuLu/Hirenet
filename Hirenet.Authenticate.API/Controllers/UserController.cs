@@ -24,4 +24,10 @@ public class UserController : ControllerBase {
 		var result = await mediator.Send(command);
 		return Ok(result);
 	}
+	[HttpPut("update")]
+	public async Task<IActionResult> Update([FromBody] UpdateUserDTO item) {
+		var command = new UpdateUserCommand(item);
+		var result = await mediator.Send(command);
+		return Ok(result);
+	}
 }

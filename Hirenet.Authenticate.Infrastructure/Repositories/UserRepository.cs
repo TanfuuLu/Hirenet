@@ -15,7 +15,7 @@ public class UserRepository : IUserRepository {
 	private readonly UserManager<User> _userManager;
 	private readonly RoleManager<IdentityRole> _roleManager;
 	private readonly IConfiguration _configuration;
-	
+
 
 	public UserRepository(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration) {
 		this._userManager = userManager;
@@ -28,7 +28,7 @@ public class UserRepository : IUserRepository {
 			throw new Exception("FullName cannot be null");
 		}
 		else if (user.Email == null) {
-			throw new Exception( "Email cannot be null");
+			throw new Exception("Email cannot be null");
 		}
 		var userName = user.FullName.Replace(" ", "").ToLower();
 		var userItem = new User {
@@ -86,10 +86,10 @@ public class UserRepository : IUserRepository {
 			expires: DateTime.Now.AddDays(expiresTime),
 			signingCredentials: creds
 			);
-		return new  JwtSecurityTokenHandler().WriteToken(token);
+		return new JwtSecurityTokenHandler().WriteToken(token);
 	}
 
-	
+
 
 	public async Task<User> GetUserByEmail(string email) {
 		var checkUser = await _userManager.FindByEmailAsync(email);
@@ -98,7 +98,7 @@ public class UserRepository : IUserRepository {
 
 	public async Task<LoginReponse> LoginAccount(string email, string password, bool? rememberMe) {
 		var checkUser = await GetUserByEmail(email);
-		if(checkUser == null) {
+		if (checkUser == null) {
 			throw new Exception("User not found");
 		}
 		var checkUserLogin = await _userManager.CheckPasswordAsync(checkUser, password);
@@ -114,5 +114,22 @@ public class UserRepository : IUserRepository {
 		else {
 			throw new Exception("Login Failed");
 		}
+	}
+
+	public async Task<User> UpdateUser(UpdateUserDTO user) {
+		var checkUser = await _userManager.FindByEmailAsync(user.Email);
+		if (checkUser == null) {
+			throw new Exception("User not found");
+		}
+		checkUser.Bio = user.Bio ?? checkUser.Bio;
+		checkUser.ProfileImageUrl = user.ProfileImageUrl ?? checkUser.ProfileImageUrl;
+		checkUser.UserField = user.UserField ?? checkUser.UserField;
+		checkUser.UpdatedAt = DateTimeOffset.UtcNow;
+		if(user.IsActive == true) {
+			checkUser.ActiveTime = DateTime.Now;
+			checkUser.IsActive = true;
+		}
+		await _userManager.UpdateAsync(checkUser);
+		return checkUser;
 	}
 }

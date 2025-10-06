@@ -11,4 +11,6 @@ builder.AddProject<Projects.Hirenet_Authenticate_API>("hirenet-authenticate-api"
 	.WaitFor(authenDb)
 	.WithEndpoint("https", endpoint => endpoint.IsProxied = false);
 
+builder.AddProject<Projects.Hirenet_Job_API>("hirenet-job-api");
+
 builder.Build().Run();

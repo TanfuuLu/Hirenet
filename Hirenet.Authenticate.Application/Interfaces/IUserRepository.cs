@@ -12,5 +12,6 @@ public interface IUserRepository {
 	Task<User> CreateUser(User user, string password);
 	Task<User> GetUserByEmail(string email);
 	Task<LoginReponse> LoginAccount(string email, string password, bool? rememberMe);
+	Task<User> UpdateUser(UpdateUserDTO user);
 	string GenerateJwtToken(User user, ICollection<string> listRoles, bool? rememberMe);
 }
