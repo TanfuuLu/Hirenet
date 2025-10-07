@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hirenet.Job.Application.DTOs;
 public class UpdateJobDTO {
+	public int JobID { get; set; }
 	public string JobName { get; set; }
 	public string JobDetail { get; set; }
 	public string JobRequirement { get; set; }

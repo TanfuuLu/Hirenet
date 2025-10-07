@@ -1,4 +1,5 @@
-﻿using Mapster;
+﻿using Hirenet.Job.Application.Interfaces;
+using Mapster;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;

@@ -17,11 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Mediator\Queries\" />
-    <Folder Include="Mediator\Handlers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Hirenet.Job.Domain\Hirenet.Job.Domain.csproj" />
   </ItemGroup>
 
