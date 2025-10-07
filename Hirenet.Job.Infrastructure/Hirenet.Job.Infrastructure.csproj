@@ -18,4 +18,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Hirenet.Job.Application\Hirenet.Job.Application.csproj" />
+    <ProjectReference Include="..\Hirenet.Job.Domain\Hirenet.Job.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

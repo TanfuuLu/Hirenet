@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Hirenet.Job.Domain;
-public class Job {
+public class JobModel {
 	[Key]
 	[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 	public int JobID { get; set; }
@@ -16,7 +16,10 @@ public class Job {
 	public string JobRequirement { get; set; }
 	public string CompanyName { get; set; }
 	public string WorkType { get; set; }
-	public string SalaryRange { get; set; }	
+	public string JobType { get; set; }
+	public string SalaryRange { get; set; }
+	public string UserCreated { get; set; }
+
 	public DateTime CreatedDate { get; set; }
 	public DateTime ExpiredDate { get; set; }
 }
