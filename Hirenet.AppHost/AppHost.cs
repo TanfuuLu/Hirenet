@@ -1,22 +1,20 @@
+using Aspire.Hosting;
+using Microsoft.Extensions.Configuration;
+
 var builder = DistributedApplication.CreateBuilder(args);
 
-var sqlBuilder = builder.AddSqlServer("HirenetSQL")
-		.WithHostPort(3030)
-		     .WithLifetime(ContainerLifetime.Persistent)
-		     .WithDataVolume();
+var authenDbString = builder.AddConnectionString("AuthenDb");
+var jobDbString = builder.AddConnectionString("JobDb");
 
-var authenDb = sqlBuilder.AddDatabase("AuthenDb");
-var jobDb = sqlBuilder.AddDatabase("JobDb");
+
 
 
 builder.AddProject<Projects.Hirenet_Authenticate_API>("hirenet-authenticate-api")
-	.WithReference(authenDb)
-	.WaitFor(authenDb)
-	.WithEndpoint("https", endpoint => endpoint.IsProxied = false);
+	.WithReference(authenDbString)
+	.WithExternalHttpEndpoints();
 
 builder.AddProject<Projects.Hirenet_Job_API>("hirenet-job-api")
-	.WithReference(jobDb)
-	.WaitFor(jobDb)
-	.WithEndpoint("https", endpoint => endpoint.IsProxied = false);
+	.WithReference(jobDbString)
+	.WithExternalHttpEndpoints();
 
 builder.Build().Run();

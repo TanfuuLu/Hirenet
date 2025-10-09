@@ -1,8 +1,10 @@
 using Hirenet.Authenticate.Application;
 using Hirenet.Authenticate.Infrastructure;
+using Hirenet.Authenticate.Infrastructure.Persistence;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.AddSqlServerDbContext<AuthenticateDbContext>("AuthenDb");
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 builder.AddServiceDefaults();

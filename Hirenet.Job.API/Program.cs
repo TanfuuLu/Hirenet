@@ -1,8 +1,9 @@
 using Hirenet.Job.Infrastructure;
 using Hirenet.Job.Application;
 using Scalar.AspNetCore;
+using Hirenet.Job.Infrastructure.Persistence;
 var builder = WebApplication.CreateBuilder(args);
-
+builder.AddSqlServerDbContext<JobDbContext>("JobDb");
 builder.AddServiceDefaults();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();

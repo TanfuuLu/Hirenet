@@ -1,29 +1,32 @@
 {
-  "$schema": "https://json.schemastore.org/launchsettings.json",
   "profiles": {
     "https": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:17208;http://localhost:15104",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DOTNET_ENVIRONMENT": "Development",
         "ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL": "https://localhost:21237",
-        "ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL": "https://localhost:22202"
-      }
+        "ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL": "https://localhost:22202",
+        "AZURE_TENANT_ID": "d19f4a31-0aaa-4046-992f-a1f3fcf82267",
+        "AZURE_AUTHORITY_HOST": "https://login.windows.net"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "https://localhost:17208;http://localhost:15104",
+      "remoteDebugEnabled": false
     },
     "http": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:15104",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DOTNET_ENVIRONMENT": "Development",
         "ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL": "http://localhost:19116",
         "ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL": "http://localhost:20037"
-      }
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:15104"
     }
-  }
+  },
+  "$schema": "https://json.schemastore.org/launchsettings.json"
 }
