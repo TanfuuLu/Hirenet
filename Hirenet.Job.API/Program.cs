@@ -16,6 +16,14 @@ builder.Services.AddOpenApi();
 var app = builder.Build();
 app.Services.ApplyMigrations();
 app.MapDefaultEndpoints();
+builder.Services.AddCors(options => {
+	options.AddPolicy("AllowAll", policy =>
+	{
+		policy.AllowAnyOrigin()
+			.AllowAnyHeader()
+			.AllowAnyMethod();
+	});
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment()) {
