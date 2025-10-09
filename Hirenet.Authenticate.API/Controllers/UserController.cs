@@ -12,6 +12,10 @@ public class UserController : ControllerBase {
 	public UserController(IMediator mediator) {
 		this.mediator = mediator;
 	}
+	[HttpGet("")]
+	public async Task<IActionResult> Get() {
+		return Ok("Authenticate Service is running");
+	}
 	[HttpPost("register")]
 	public async Task<IActionResult> Register([FromBody] CreateUserDTO item) {
 		var command = new CreateUserCommand(item);

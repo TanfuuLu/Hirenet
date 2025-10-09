@@ -10,28 +10,26 @@ builder.Services.AddApplication();
 builder.AddServiceDefaults();
 
 // Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
-
-var app = builder.Build();
-app.Services.ApplyMigrations();
-app.MapDefaultEndpoints();
 builder.Services.AddCors(options => {
-	options.AddPolicy("AllowAll", policy =>
-	{
+	options.AddPolicy("AllowAll", policy => {
 		policy.AllowAnyOrigin()
 			.AllowAnyHeader()
 			.AllowAnyMethod();
 	});
 });
+builder.Services.AddControllers();
+// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+builder.Services.AddOpenApi();
+
+var app = builder.Build(); app.UseCors("AllowAll");
+app.Services.ApplyMigrations();
+app.MapDefaultEndpoints();
+
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-	app.MapScalarApiReference();
-    app.MapOpenApi();
+if (app.Environment.IsDevelopment()) {
+	app.MapScalarApiReference("/scalar/v1").AllowAnonymous();
+	app.MapOpenApi();
 }
 
 app.UseHttpsRedirection();

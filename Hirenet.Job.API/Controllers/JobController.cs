@@ -14,6 +14,10 @@ public class JobController : ControllerBase {
     public JobController(IMediator mediator) {
 	  this.mediator = mediator;
     }
+	[HttpGet("")]
+	public async Task<IActionResult> Get() {
+		return Ok("Job Service is running");
+	}
 	[HttpPost("create")]
 	public async Task<IActionResult> CreateJob([FromBody] CreateJobDTO item) {
 		var command = new CreateJobCommand(item);
