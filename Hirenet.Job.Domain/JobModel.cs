@@ -16,10 +16,12 @@ public class JobModel {
 	public string JobRequirement { get; set; }
 	public string CompanyName { get; set; }
 	public string WorkType { get; set; }
-	public string JobType { get; set; }
 	public string SalaryRange { get; set; }
 	public string UserCreated { get; set; }
+	public string JobStatus { get; set; }
 
 	public DateTime CreatedDate { get; set; }
 	public DateTime ExpiredDate { get; set; }
+	public int? JobTypeId { get; set; }
+	public JobType? JobType { get; set; }
 }

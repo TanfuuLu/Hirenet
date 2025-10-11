@@ -15,6 +15,7 @@ public static class DependencyInjection {
 	public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration builder) {
 		
 		services.AddScoped<IJobRepository, JobRepository>();
+		services.AddScoped<IJobTypeRepository, JobTypeRepository>();
 
 		return services;
 	}

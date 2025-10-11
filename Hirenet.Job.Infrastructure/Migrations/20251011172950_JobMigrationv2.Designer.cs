@@ -4,6 +4,7 @@ using Hirenet.Job.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hirenet.Job.Infrastructure.Migrations
 {
     [DbContext(typeof(JobDbContext))]
-    partial class JobDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251011172950_JobMigrationv2")]
+    partial class JobMigrationv2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,7 +59,7 @@ namespace Hirenet.Job.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("JobTypeId")
+                    b.Property<int>("JobTypeId")
                         .HasColumnType("int");
 
                     b.Property<string>("SalaryRange")
@@ -99,7 +102,9 @@ namespace Hirenet.Job.Infrastructure.Migrations
                 {
                     b.HasOne("Hirenet.Job.Domain.JobType", "JobType")
                         .WithMany()
-                        .HasForeignKey("JobTypeId");
+                        .HasForeignKey("JobTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("JobType");
                 });

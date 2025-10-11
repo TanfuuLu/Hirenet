@@ -54,10 +54,10 @@ public class JobRepository : IJobRepository {
 			jobList = await context.Jobs.Where(j => j.CompanyName == companyName).ToListAsync();
 		}
 		if( jobType != null) {
-			jobList = await context.Jobs.Where(j => j.JobType == jobType).ToListAsync();
+			jobList = await context.Jobs.Where(j => j.JobType.JobTypeName == jobType).ToListAsync();
 		}
 		if(jobType != null && companyName != null) {
-			jobList = await context.Jobs.Where(j => j.CompanyName == companyName && j.JobType == jobType).ToListAsync();
+			jobList = await context.Jobs.Where(j => j.CompanyName == companyName && j.JobType.JobTypeName == jobType).ToListAsync();
 		}
 		else {
 			jobList = await context.Jobs.ToListAsync();

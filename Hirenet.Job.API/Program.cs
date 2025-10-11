@@ -32,13 +32,14 @@ if (app.Environment.IsDevelopment()) {
 	}).AllowAnonymous();
 	app.MapOpenApi();
 }
-app.MapOpenApi();
-app.MapScalarApiReference("scalar/v1",options => {
-	options.WithTitle("Hirenet Job API");
-	options.WithOpenApiRoutePattern("/openapi/v1.json");
-	
-    
-}).AllowAnonymous();
+else {
+	app.MapOpenApi();
+	app.MapScalarApiReference("scalar/v1", options => {
+		options.WithTitle("Hirenet Job API");
+		options.WithOpenApiRoutePattern("/openapi/v1.json");
+	}).AllowAnonymous();
+}
+
 
 app.UseHttpsRedirection();
 

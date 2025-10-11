@@ -21,7 +21,8 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-var app = builder.Build(); app.UseCors("AllowAll");
+var app = builder.Build(); 
+app.UseCors("AllowAll");
 app.Services.ApplyMigrations();
 app.MapDefaultEndpoints();
 
@@ -31,6 +32,14 @@ if (app.Environment.IsDevelopment()) {
 	app.MapScalarApiReference("/scalar/v1").AllowAnonymous();
 	app.MapOpenApi();
 }
+else {
+	app.MapOpenApi();
+	app.MapScalarApiReference("/scalar/v1", options => {
+		options.Title = "Hirenet Authenticate API";
+		options.WithOpenApiRoutePattern("/openapi/v1.json");
+	}).AllowAnonymous();
+}
+	
 
 app.UseHttpsRedirection();
 

@@ -15,7 +15,7 @@ public class JobController : ControllerBase {
 	  this.mediator = mediator;
     }
 	[HttpGet("")]
-	public async Task<IActionResult> Get() {
+	public  IActionResult Get() {
 		return Ok("Job Service is running");
 	}
 	[HttpPost("create")]
