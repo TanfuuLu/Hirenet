@@ -362,3 +362,8 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 .azure
+/infra/main.bicep
+/infra/main.parameters.json
+/infra/resources.bicep
+/Hirenet.AppHost/infra/hirenet-authenticate-api.tmpl.yaml
+/Hirenet.AppHost/infra/hirenet-job-api.tmpl.yaml

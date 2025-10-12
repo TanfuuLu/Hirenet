@@ -9,12 +9,17 @@ var jobDbString = builder.AddConnectionString("JobDb");
 
 
 
-builder.AddProject<Projects.Hirenet_Authenticate_API>("hirenet-authenticate-api")
+var authService = builder.AddProject<Projects.Hirenet_Authenticate_API>("hirenet-authenticate-api")
 	.WithReference(authenDbString)
 	.WithExternalHttpEndpoints();
 
-builder.AddProject<Projects.Hirenet_Job_API>("hirenet-job-api")
+var jobService = builder.AddProject<Projects.Hirenet_Job_API>("hirenet-job-api")
 	.WithReference(jobDbString)
 	.WithExternalHttpEndpoints();
+
+builder.AddProject<Projects.Hirenet_Gateway>("hirenet-gateway")
+	.WithReference(authService)
+	.WithReference(jobService)
+	;
 
 builder.Build().Run();
