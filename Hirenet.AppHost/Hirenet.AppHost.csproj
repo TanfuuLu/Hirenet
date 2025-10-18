@@ -20,6 +20,7 @@
     <ProjectReference Include="..\Hirenet.Authenticate.API\Hirenet.Authenticate.API.csproj" />
     <ProjectReference Include="..\Hirenet.Gateway\Hirenet.Gateway.csproj" />
     <ProjectReference Include="..\Hirenet.Job.API\Hirenet.Job.API.csproj" />
+    <ProjectReference Include="..\Hirenet.Wallet.API\Hirenet.Wallet.API.csproj" />
   </ItemGroup>
 
 </Project>

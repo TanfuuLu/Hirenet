@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 namespace Hirenet.Authenticate.Infrastructure;
 public static class DependencyInjection {
 	public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration) {
+		services.AddDbContext<AuthenticateDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("AuthenDb")));
 		services.AddScoped<IUserRepository, UserRepository>();
 
 		services.AddIdentity<User, IdentityRole>(options => {

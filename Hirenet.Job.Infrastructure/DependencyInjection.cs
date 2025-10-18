@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace Hirenet.Job.Infrastructure;
 public static class DependencyInjection {
 	public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration builder) {
-		
+		services.AddDbContext<JobDbContext>(options => options.UseSqlServer(builder.GetConnectionString("JobDb")));
 		services.AddScoped<IJobRepository, JobRepository>();
 		services.AddScoped<IJobTypeRepository, JobTypeRepository>();
 
