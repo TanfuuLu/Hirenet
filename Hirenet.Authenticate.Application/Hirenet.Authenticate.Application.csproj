@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Hirenet.Authenticate.Domain\Hirenet.Authenticate.Domain.csproj" />
+    <ProjectReference Include="..\Shared.GrpcContracts\Shared.GrpcContracts.csproj" />
   </ItemGroup>
 
 </Project>

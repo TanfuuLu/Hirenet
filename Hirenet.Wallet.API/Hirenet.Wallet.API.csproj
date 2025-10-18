@@ -21,8 +21,4 @@
     <ProjectReference Include="..\Hirenet.Wallet.Infrastructure\Hirenet.Wallet.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>

@@ -14,7 +14,12 @@ public class CreateWalletHandler : IRequestHandler<CreateWalletCommand, UserWall
 	private readonly IWalletRepository walletRepository;
 	private readonly IMapper mapper;
 
-	public async ValueTask<UserWallet> Handle(CreateWalletCommand request, CancellationToken cancellationToken) {
+    public CreateWalletHandler(IWalletRepository walletRepository, IMapper mapper) {
+	  this.walletRepository = walletRepository;
+	  this.mapper = mapper;
+    }
+
+    public async ValueTask<UserWallet> Handle(CreateWalletCommand request, CancellationToken cancellationToken) {
 		var mappedItem = mapper.Map<UserWallet>(request.model);
 		var result = await walletRepository.CreateUserWallet(mappedItem);
 		return result;

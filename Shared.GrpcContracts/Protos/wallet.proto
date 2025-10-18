@@ -1,0 +1,16 @@
+﻿ syntax = "proto3";
+
+option csharp_namespace = "Shared.GrpcContracts.Wallet";
+
+service WalletGrpcService {
+  rpc CreateWallet (CreateWalletRequest) returns (CreateWalletResponse);
+}
+
+message CreateWalletRequest {
+  string user_id = 1;
+}
+
+message CreateWalletResponse {
+  string wallet_id = 1;
+  string message = 2;
+}

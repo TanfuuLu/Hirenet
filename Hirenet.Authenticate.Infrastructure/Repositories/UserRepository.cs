@@ -16,14 +16,13 @@ public class UserRepository : IUserRepository {
 	private readonly RoleManager<IdentityRole> _roleManager;
 	private readonly IConfiguration _configuration;
 
+    public UserRepository(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration) {
+	  this._userManager = userManager;
+	  this._roleManager = roleManager;
+	  this._configuration = configuration;
+    }
 
-	public UserRepository(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration) {
-		this._userManager = userManager;
-		this._roleManager = roleManager;
-		this._configuration = configuration;
-	}
-
-	public async Task<User> CreateUser(User user, string password) {
+    public async Task<User> CreateUser(User user, string password) {
 		if (user.FullName == null) {
 			throw new Exception("FullName cannot be null");
 		}
@@ -51,12 +50,12 @@ public class UserRepository : IUserRepository {
 		}
 		//Role modifier 
 		if (user.UserRole != "Admin") {
-			await _userManager.AddToRoleAsync(user, "User");
+			await _userManager.AddToRoleAsync(userItem, "User");
 		}
 		else {
-			await _userManager.AddToRoleAsync(user, "Admin");
+			await _userManager.AddToRoleAsync(userItem, "Admin");
 		}
-
+		
 		return user;
 
 	}

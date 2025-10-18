@@ -15,12 +15,12 @@ public class CreateUserHandler : IRequestHandler<CreateUserCommand, User> {
 	private readonly IUserRepository userRepository;
 	private readonly IMapper mapper;
 
-	public CreateUserHandler(IUserRepository userRepository, IMapper mapper) {
-		this.userRepository = userRepository;
-		this.mapper = mapper;
-	}
+    public CreateUserHandler(IUserRepository userRepository, IMapper mapper) {
+	  this.userRepository = userRepository;
+	  this.mapper = mapper;
+    }
 
-	public async ValueTask<User> Handle(CreateUserCommand request, CancellationToken cancellationToken) {
+    public async ValueTask<User> Handle(CreateUserCommand request, CancellationToken cancellationToken) {
 		var itemModel = mapper.Map<User>(request.model);
 		var result = await userRepository.CreateUser(itemModel, request.model.Password);
 		if(result != null) {

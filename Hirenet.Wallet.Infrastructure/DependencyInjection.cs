@@ -14,7 +14,7 @@ namespace Hirenet.Wallet.Infrastructure;
 public static class DependencyInjection {
 	public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration) {
 		services.AddDbContext<UserWalletDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("WalletDb")));
-		services.AddScoped<IWalletRepository, WalletRepository>();
+		services.AddScoped<IWalletRepository, WalletRepository>();	
 		return services;
 	}
 	public static void ApplyMigrations(this IServiceProvider services) {

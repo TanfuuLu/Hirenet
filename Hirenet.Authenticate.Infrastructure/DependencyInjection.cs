@@ -19,6 +19,7 @@ public static class DependencyInjection {
 		services.AddDbContext<AuthenticateDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("AuthenDb")));
 		services.AddScoped<IUserRepository, UserRepository>();
 
+
 		services.AddIdentity<User, IdentityRole>(options => {
 			options.Password.RequireDigit = false;
 			options.Password.RequireLowercase = false;

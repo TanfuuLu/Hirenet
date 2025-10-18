@@ -17,11 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Cqrs\Queries\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Hirenet.Wallet.Domain\Hirenet.Wallet.Domain.csproj" />
+    <ProjectReference Include="..\Shared.GrpcContracts\Shared.GrpcContracts.csproj" />
   </ItemGroup>
 
 </Project>
