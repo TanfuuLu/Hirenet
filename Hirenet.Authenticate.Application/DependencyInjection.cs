@@ -1,4 +1,5 @@
-﻿using Mapster;
+﻿using Hirenet.Authenticate.Application.Kafkas;
+using Mapster;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ public static class DependencyInjection {
 	public static IServiceCollection AddApplication(this IServiceCollection services) {
 		services.AddMapster();
 		services.AddMediator(options => options.ServiceLifetime = ServiceLifetime.Scoped);
+		services.AddScoped<UserEventProducer>();
 		return services;
 	}
 }

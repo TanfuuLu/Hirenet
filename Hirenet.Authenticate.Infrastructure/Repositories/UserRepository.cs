@@ -1,5 +1,6 @@
 ﻿using Hirenet.Authenticate.Application.DTOs;
 using Hirenet.Authenticate.Application.Interfaces;
+using Hirenet.Authenticate.Application.Kafkas;
 using Hirenet.Authenticate.Domain;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -15,11 +16,13 @@ public class UserRepository : IUserRepository {
 	private readonly UserManager<User> _userManager;
 	private readonly RoleManager<IdentityRole> _roleManager;
 	private readonly IConfiguration _configuration;
+	private readonly UserEventProducer _userEventProducer;
 
-    public UserRepository(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration) {
+    public UserRepository(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, UserEventProducer userEventProducer) {
 	  this._userManager = userManager;
 	  this._roleManager = roleManager;
 	  this._configuration = configuration;
+	  this._userEventProducer = userEventProducer;
     }
 
     public async Task<User> CreateUser(User user, string password) {
@@ -55,7 +58,7 @@ public class UserRepository : IUserRepository {
 		else {
 			await _userManager.AddToRoleAsync(userItem, "Admin");
 		}
-		
+		await _userEventProducer.PublishUserCreatedAsync(userItem.Id);
 		return user;
 
 	}

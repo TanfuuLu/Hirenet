@@ -9,8 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 //}
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
-builder.AddServiceDefaults();
+builder.AddKafkaProducer<string, string>("hirenet-kafka");
 
+builder.AddServiceDefaults();
 // Add services to the container.
 builder.Services.AddCors(options => {
 	options.AddPolicy("AllowAll", policy => {

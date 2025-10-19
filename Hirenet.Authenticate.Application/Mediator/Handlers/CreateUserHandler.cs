@@ -15,6 +15,7 @@ public class CreateUserHandler : IRequestHandler<CreateUserCommand, User> {
 	private readonly IUserRepository userRepository;
 	private readonly IMapper mapper;
 
+
     public CreateUserHandler(IUserRepository userRepository, IMapper mapper) {
 	  this.userRepository = userRepository;
 	  this.mapper = mapper;

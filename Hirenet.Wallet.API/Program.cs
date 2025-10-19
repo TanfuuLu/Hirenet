@@ -10,6 +10,11 @@ builder.AddServiceDefaults();
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+builder.AddKafkaConsumer<string, string>("hirenet-kafka", configureSettings: settings => {
+	settings.Config.GroupId = "wallet-service-group";
+	settings.Config.AutoOffsetReset = Confluent.Kafka.AutoOffsetReset.Earliest;
+});
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 var app = builder.Build();
