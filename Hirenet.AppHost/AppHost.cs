@@ -13,6 +13,7 @@ var sqlBuilder = builder.AddSqlServer("hirenet-sql");
 var authenDb = sqlBuilder.AddDatabase("AuthenDb");
 var jobDb = sqlBuilder.AddDatabase("JobDb");
 var walletDb = sqlBuilder.AddDatabase("WalletDb");
+var contractDb = sqlBuilder.AddDatabase("ContractDb");
 #endregion
 
 //var authenDbString = builder.AddConnectionString("AuthenDb");
@@ -45,6 +46,17 @@ builder.AddProject<Projects.Hirenet_Wallet_API>("hirenet-wallet-api")
 builder.AddProject<Projects.Hirenet_Gateway>("hirenet-gateway")
 	.WithReference(authService)
 	.WithReference(jobService);
+
+
+
+builder.AddProject<Projects.Hirenet_Payment_API>("hirenet-payment-api");
+
+
+
+builder.AddProject<Projects.Hirenet_Contract_API>("hirenet-contract-api")
+	.WithReference(contractDb)
+	.WaitFor(contractDb)
+	.WithEndpoint("https", endpoint => endpoint.IsProxied = false);
 
 
 

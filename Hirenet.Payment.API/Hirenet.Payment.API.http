@@ -1,0 +1,6 @@
+@Hirenet.Payment.API_HostAddress = http://localhost:5204
+
+GET {{Hirenet.Payment.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

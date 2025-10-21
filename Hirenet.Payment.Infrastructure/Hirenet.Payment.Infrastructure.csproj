@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Hirenet.Payment.Application\Hirenet.Payment.Application.csproj" />
+    <ProjectReference Include="..\Hirenet.Payment.Domain\Hirenet.Payment.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
