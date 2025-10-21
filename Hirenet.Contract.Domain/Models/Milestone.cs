@@ -19,7 +19,6 @@ public class Milestone {
 	public DateTime DateCreated { get; set; } = DateTime.Now;
 	public DateTime? DateCompleted { get; set; }
 
-
 	public ICollection<MilestoneFile>  MilestoneFiles { get; set; } = new List<MilestoneFile>();
 	public int ContractId { get; set; }
 	public JobContract? Contract { get; set; }

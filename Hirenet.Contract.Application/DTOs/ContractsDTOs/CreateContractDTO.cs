@@ -1,17 +1,13 @@
 ﻿using Hirenet.Contract.Domain.Enums;
+using Hirenet.Contract.Domain.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hirenet.Contract.Domain.Models;
-public class JobContract {
-	[Key]
-	[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-	public int ContractId { get; set; }
+namespace Hirenet.Contract.Application.DTOs.ContractsDTOs;
+public class CreateContractDTO {
 	public string OwnerId { get; set; }
 	public string ClientId { get; set; }
 	public string ContractName { get; set; }
@@ -20,6 +16,5 @@ public class JobContract {
 	public ContractStatus ContractStatus { get; set; } = ContractStatus.Pending; //Working, Completed, Paid, Waiting for Payment
 	public string PaymentType { get; set; } // Contract Price, Base on Milestones
 
-	public DateTime StartDate { get; set; } = DateTime.Now;
-	public ICollection<int> MilestonesId { get; set; } = new List<int>();
+	public DateTime StartDate { get; set; }
 }

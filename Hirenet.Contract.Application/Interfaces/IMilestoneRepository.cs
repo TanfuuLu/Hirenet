@@ -11,7 +11,7 @@ public interface IMilestoneRepository {
 	Task<ICollection<Milestone>> GetMilestonesByContractIdAsync(int contractId);
 	Task<ICollection<Milestone>> GetAllMilestonesAsync();
 	Task<Milestone> CreateMilestoneAsync(Milestone milestone);
-	Task<Milestone> UpdateMilestoneAsync(Milestone milestone);
+	Task<Milestone> UpdateMilestoneAsync(Milestone milestone, int milestoneId);
 	Task<Milestone> UpdateMilestoneStatusAsync(int milestoneId, MilestoneStatus status);
 	Task<bool> DeleteMilestoneAsync(int milestoneId);
 

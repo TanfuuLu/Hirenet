@@ -7,6 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hirenet.Contract.Application.Cqrs.Commands;
+namespace Hirenet.Contract.Application.Cqrs.Milestones.Commands;
 public record  UploadMilestoneFileCommand(MilestoneFileUploadDTO modelDto) : IRequest<MilestoneFile>  {
 }

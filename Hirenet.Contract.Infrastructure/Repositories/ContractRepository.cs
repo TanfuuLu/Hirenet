@@ -34,7 +34,7 @@ public class ContractRepository : IContractRepository {
 	}
 
 	public async Task<ICollection<JobContract>> GetContractByOwnerIdAsync(string ownerId) {
-	  var contracts = await dbContext.Contracts.Where(c => c.OwnerId == ownerId).ToListAsync();
+		var contracts = await dbContext.Contracts.Where(c => c.OwnerId == ownerId).ToListAsync();
 		return contracts;
 
 	}
@@ -55,4 +55,13 @@ public class ContractRepository : IContractRepository {
 
 	}
 
+	public async Task<JobContract> UpdateMilestonesContractAsync(ICollection<int> milestoneIds, int contractId) {
+		var contractExisted = await dbContext.Contracts.FirstOrDefaultAsync(c => c.ContractId == contractId);
+		if (contractExisted == null) {
+			throw new ArgumentException(
+				"Not found contract with id: " + contractId);
+		}
+		contractExisted.MilestonesId = milestoneIds;
+		return contractExisted;
+	}
 }

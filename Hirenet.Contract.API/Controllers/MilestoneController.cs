@@ -1,5 +1,5 @@
-﻿using Hirenet.Contract.Application.Cqrs.Commands;
-using Hirenet.Contract.Application.Cqrs.Queries;
+﻿using Hirenet.Contract.Application.Cqrs.Milestones.Commands;
+using Hirenet.Contract.Application.Cqrs.Milestones.Queries;
 using Hirenet.Contract.Application.DTOs;
 using Hirenet.Contract.Domain.Models;
 using Mediator;

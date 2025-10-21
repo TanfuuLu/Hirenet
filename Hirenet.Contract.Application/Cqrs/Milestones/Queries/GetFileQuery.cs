@@ -6,6 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hirenet.Contract.Application.Cqrs.Queries;
+namespace Hirenet.Contract.Application.Cqrs.Milestones.Queries;
 public record  GetFileQuery(int milestoneId) : IRequest<IEnumerable<MilestoneFile>> {
 }

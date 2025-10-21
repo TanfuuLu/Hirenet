@@ -12,6 +12,7 @@ public interface IContractRepository {
 	Task<ICollection<JobContract>> GetContractByOwnerIdAsync(string ownerId);	
 	Task<JobContract> CreateContractAsync(JobContract contract);
 	Task<JobContract> UpdateContractStatusAsync(ContractStatus contract, int contractId);
+	Task<JobContract> UpdateMilestonesContractAsync(ICollection<int> milestoneIds, int contractId);
 	Task<bool> DeleteContractAsync(int contractId);
 
 }

@@ -16,6 +16,7 @@ public static class DependencyInjection {
 	public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config) {
 		services.AddDbContext<ContractDbContext>(options => options.UseSqlServer(config.GetConnectionString("ContractDb")));
 		services.AddScoped<IMilestoneFileRepository, MilestoneFileRepository>();
+		services.AddScoped<IContractRepository, ContractRepository>();
 		return services;
 	}
 	public static void ApplyMigrations(this IServiceProvider services) {

@@ -1,4 +1,4 @@
-﻿using Hirenet.Contract.Application.Cqrs.Queries;
+﻿using Hirenet.Contract.Application.Cqrs.Milestones.Queries;
 using Hirenet.Contract.Application.Interfaces;
 using Hirenet.Contract.Domain.Models;
 using Mediator;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hirenet.Contract.Application.Cqrs.Handlers;
+namespace Hirenet.Contract.Application.Cqrs.Milestones.Handlers;
 public class GetFileHandler : IRequestHandler<GetFileQuery, IEnumerable<MilestoneFile>> {
 	private readonly IMilestoneFileRepository repository;
 
