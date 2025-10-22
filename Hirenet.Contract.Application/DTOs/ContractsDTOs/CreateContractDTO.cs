@@ -17,4 +17,5 @@ public class CreateContractDTO {
 	public string PaymentType { get; set; } // Contract Price, Base on Milestones
 
 	public DateTime StartDate { get; set; }
+
 }

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Hirenet.Contract.Domain.Enums;
 public enum ContractStatus {
-	Pending,
-	Working,
-	Completed,
-	Cancelled,
-	WaitingForPayment,
+	Pending, //1
+	Working,//2
+	Completed,//3
+	Cancelled,//4
+	WaitingForPayment,//5
 
 }

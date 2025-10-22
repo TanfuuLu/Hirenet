@@ -49,10 +49,6 @@ namespace Hirenet.Contract.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.PrimitiveCollection<string>("MilestonesId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("OwnerId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -135,7 +131,7 @@ namespace Hirenet.Contract.Infrastructure.Migrations
             modelBuilder.Entity("Hirenet.Contract.Domain.Models.Milestone", b =>
                 {
                     b.HasOne("Hirenet.Contract.Domain.Models.JobContract", "Contract")
-                        .WithMany()
+                        .WithMany("Milestones")
                         .HasForeignKey("ContractId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -152,6 +148,11 @@ namespace Hirenet.Contract.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Milestone");
+                });
+
+            modelBuilder.Entity("Hirenet.Contract.Domain.Models.JobContract", b =>
+                {
+                    b.Navigation("Milestones");
                 });
 
             modelBuilder.Entity("Hirenet.Contract.Domain.Models.Milestone", b =>

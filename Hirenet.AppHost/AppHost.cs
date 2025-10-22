@@ -9,7 +9,7 @@ var kafka = builder.AddKafka("hirenet-kafka")
 
 #endregion
 #region SQL 
-var sqlBuilder = builder.AddSqlServer("hirenet-sql");
+var sqlBuilder = builder.AddSqlServer("hirenet-sql").WithHostPort(3070).WithDataVolume("hirenet-volume");
 var authenDb = sqlBuilder.AddDatabase("AuthenDb");
 var jobDb = sqlBuilder.AddDatabase("JobDb");
 var walletDb = sqlBuilder.AddDatabase("WalletDb");

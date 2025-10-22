@@ -29,7 +29,12 @@ public class MilestoneFileRepository : IMilestoneFileRepository {
 		    .ToListAsync();
 	}
 
-	public async Task<MilestoneFile> UploadFileAsync(MilestoneFileUploadDTO dto, string rootPath) {
+    public async Task<ICollection<MilestoneFile>> GetAllMilestoneFileAsync(int milestoneId) {
+	  var milestoneFilesList = await dbContext.MilestoneFiles.Where(mf => mf.MilestoneId == milestoneId).ToListAsync();
+		return milestoneFilesList;
+	}
+
+    public async Task<MilestoneFile> UploadFileAsync(MilestoneFileUploadDTO dto, string rootPath) {
 		var uploadDir = Path.Combine(rootPath, "milestones");
 		if (!Directory.Exists(uploadDir))
 			Directory.CreateDirectory(uploadDir);
@@ -49,6 +54,11 @@ public class MilestoneFileRepository : IMilestoneFileRepository {
 		};
 
 		dbContext.MilestoneFiles.Add(fileEntity);
+		var checkMilestone = await dbContext.Milestones.FirstOrDefaultAsync(m => m.MilestoneId == dto.MilestoneId);
+		if (checkMilestone != null) {
+			checkMilestone.MilestoneFiles.Add(fileEntity);
+		}
+
 		await dbContext.SaveChangesAsync();
 
 		return fileEntity;

@@ -19,9 +19,14 @@ public class MilestoneRepository : IMilestoneRepository {
 
 	public async Task<Milestone> CreateMilestoneAsync(Milestone milestone) {
 		if (milestone == null) {
-			throw new ArgumentNullException(nameof(milestone) + "null value");
+			throw new Exception("null value");
 		}
 		dbContext.Milestones.Add(milestone);
+		var checkContract = await dbContext.Contracts.FirstOrDefaultAsync(c => c.ContractId == milestone.ContractId);
+		if (checkContract != null) {
+			checkContract.Milestones.Add(milestone);
+		}
+
 		await dbContext.SaveChangesAsync();
 		return milestone;
 	}
@@ -42,19 +47,24 @@ public class MilestoneRepository : IMilestoneRepository {
 		return mileStonesList;
 	}
 
-    public async Task<ICollection<Milestone>> GetMilestonesByContractIdAsync(int contractId) {
-	  var checkMilestonesList = await dbContext.Milestones.Where(m => m.ContractId == contractId).ToListAsync();
-	  return checkMilestonesList;
+	public async Task<ICollection<Milestone>> GetMilestonesByContractIdAsync(int contractId) {
+		var checkMilestonesList = await dbContext.Milestones.Include(mf => mf.MilestoneFiles).Where(m => m.ContractId == contractId).ToListAsync();
+		return checkMilestonesList;
 	}
 
-    public async Task<Milestone> UpdateMilestoneAsync(Milestone milestone, int milestoneId) {
+	public async Task<Milestone> GetMilestonesByIdAsync(int milestoneId) {
+		var checkMilestone = await dbContext.Milestones.Include(mf => mf.MilestoneFiles).FirstOrDefaultAsync(m => m.MilestoneId == milestoneId);
+		if (checkMilestone == null) {
+			throw new ArgumentException("Milestone not found with the provided ID.");
+		}
+		return checkMilestone;
+	}
+
+	public async Task<Milestone> UpdateMilestoneAsync(Milestone milestone, int milestoneId) {
 		var mileStoneExisted = await dbContext.Milestones.FirstOrDefaultAsync(m => m.MilestoneId == milestoneId);
 		if (mileStoneExisted == null) {
 			throw new ArgumentException("Milestone not found with the provided ID.");
 		}
-		mileStoneExisted.MilestoneTitle = milestone.MilestoneTitle;
-		mileStoneExisted.MilestoneDescription = milestone.MilestoneDescription;
-		mileStoneExisted.MilestoneFiles = milestone.MilestoneFiles;
 		mileStoneExisted.MilestoneEndTime = milestone.MilestoneEndTime;
 		await dbContext.SaveChangesAsync();
 		return mileStoneExisted;

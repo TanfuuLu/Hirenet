@@ -28,9 +28,11 @@ public class ContractRepository : IContractRepository {
 	public async Task<bool> DeleteContractAsync(int contractId) {
 		var checkExisted = await dbContext.Contracts.FindAsync(contractId);
 		if (checkExisted != null) {
-			return false;
+			dbContext.Contracts.Remove(checkExisted);
+			await dbContext.SaveChangesAsync();
+			return true;
 		}
-		return true;
+		return false;
 	}
 
 	public async Task<ICollection<JobContract>> GetContractByOwnerIdAsync(string ownerId) {
@@ -61,7 +63,10 @@ public class ContractRepository : IContractRepository {
 			throw new ArgumentException(
 				"Not found contract with id: " + contractId);
 		}
-		contractExisted.MilestonesId = milestoneIds;
+		var milestoneExisted = await dbContext.Milestones
+			.Where(m => milestoneIds.Contains(m.MilestoneId))
+			.ToListAsync();
+		contractExisted.Milestones = milestoneExisted;
 		return contractExisted;
 	}
 }

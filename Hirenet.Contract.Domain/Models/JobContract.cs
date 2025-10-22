@@ -21,5 +21,5 @@ public class JobContract {
 	public string PaymentType { get; set; } // Contract Price, Base on Milestones
 
 	public DateTime StartDate { get; set; } = DateTime.Now;
-	public ICollection<int> MilestonesId { get; set; } = new List<int>();
+	public ICollection<Milestone> Milestones { get; set; } = new List<Milestone>();
 }
